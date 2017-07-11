@@ -48,3 +48,8 @@ git commit -m "first django-powered page"
 
 ### Start App
 
+python3 manage.py startapp blogengine
+
+python manage.py makemigrations
+
+python manage.py migrate
