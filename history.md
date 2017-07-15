@@ -53,3 +53,13 @@ python3 manage.py startapp blogengine
 python manage.py makemigrations
 
 python manage.py migrate
+
+python3 manage.py sqlmigrate blogengine 0001
+
+### Creating blog posts via the admin
+
+python3 manage.py createsuperuser
+
+mkdir blogengine/fixtures
+
+python3 manage.py dumpdata auth.User --indent=2 > blogengine/fixtures/user.json

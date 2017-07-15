@@ -78,6 +78,101 @@ class AdminTest(BaseAcceptanceTest):
         # Check 'Log in' in response
         self.assertTrue('Log in' in response.content.decode('utf-8'))
 
+    def test_create_post(self):
+        # Log in
+        self.client.login(username='jeffqian', password='Qx6y123Y')
+
+        # Check response code
+        response = self.client.get('/admin/blogengine/post/add/')
+        self.assertEqual(response.status_code, 200)
+
+        # Create the new post
+        response = self.client.post('/admin/blogengine/post/add/', 
+            {
+                'title': 'My first post',
+                'text': 'This is my first post',
+                'pub_date_0': '2017-07-14',
+                'pub_date_1': '22:00:04'
+            },
+            follow=True
+        )
+        self.assertEqual(response.status_code, 200)
+
+        # Check added successfully
+        self.assertTrue('added successfully' in response.content.decode('utf-8'))
+
+        # Check new post now in database
+        all_posts = Post.objects.all()
+        self.assertEqual(len(all_posts), 1)
+
+    def test_edit_post(self):
+        # Create the post
+        post = Post()
+        post.title = 'My first post'
+        post.text = 'This is my first blog post'
+        post.pub_date = timezone.now()
+        post.save()
+
+        # Log in
+        self.client.login(username='jeffqian', password='Qx6y123Y')
+
+        # Edit the post
+        response = self.client.post('/admin/blogengine/post/' + str(post.pk) + '/change/', 
+            {
+                'title': 'My second post',
+                'text': 'This is my second blog post',
+                'pub_date_0': '2017-07-14',
+                'pub_date_1': '22:00:04'
+            },
+            follow=True
+        )
+        self.assertEqual(response.status_code, 200)
+      
+        # Check changed successfully
+        self.assertTrue('changed successfully' in response.content.decode('utf-8'))
+
+        # Check post amended
+        all_posts = Post.objects.all()
+        self.assertEqual(len(all_posts), 1)
+        only_post = all_posts[0]
+        self.assertEqual(only_post.title, 'My second post')
+        self.assertEqual(only_post.text, 'This is my second blog post')
+
+    def test_delete_post(self):
+        # Create the post
+        post = Post()
+        post.title = 'My first post'
+        post.text = 'This is my first blog post'
+        post.pub_date = timezone.now()
+        post.save()
+
+        # Check new post saved
+        all_posts = Post.objects.all()
+        self.assertEqual(len(all_posts), 1)
+
+        # Log in
+        self.client.login(username='jeffqian', password='Qx6y123Y')
+
+        # Delete the post
+        response = self.client.post('/admin/blogengine/post/' + str(post.pk) + '/delete/', 
+            {
+                'post': 'yes'
+            },
+            follow=True
+        )
+        self.assertEqual(response.status_code, 200)
+
+        # Check deleted successfully
+        self.assertTrue('deleted successfully' in response.content.decode('utf-8'))
+
+        # Check post amended
+        all_posts = Post.objects.all()
+        self.assertEqual(len(all_posts), 0)
+
+
+
+
+
 
 
 
