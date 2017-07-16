@@ -2,6 +2,8 @@ from django.test import TestCase, LiveServerTestCase, Client
 from django.utils import timezone
 from blogengine.models import Post
 import markdown2 as markdown
+from django.contrib.flatpages.models import FlatPage
+from django.contrib.sites.models import Site
 
 class PostTest(TestCase):
     def test_create_post(self):
