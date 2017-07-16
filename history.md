@@ -86,4 +86,12 @@ mkdir templates/blogengine/includes
 
 cp blogengine/static/bower_components/html5-boilerplate/dist/index.html blogengine/templates/blogengine/includes/base.html
 
+### Formatting our content
 
+pip install markdown2
+
+pip freeze > requirements.txt
+
+mkdir blogengine/templatetags
+
+touch blogengine/templatetags/__init__.py

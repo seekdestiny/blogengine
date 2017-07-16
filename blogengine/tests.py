@@ -1,6 +1,7 @@
 from django.test import TestCase, LiveServerTestCase, Client
 from django.utils import timezone
 from blogengine.models import Post
+import markdown2 as markdown
 
 class PostTest(TestCase):
     def test_create_post(self):
@@ -174,7 +175,7 @@ class PostViewTest(BaseAcceptanceTest):
     # Create the post
         post = Post()
         post.title = 'My first post'
-        post.text = 'This is my first blog post'
+        post.text = 'This is [my first blog post](http://127.0.0.1:8000/)'
         post.pub_date = timezone.now()
         post.save()
 
@@ -190,12 +191,19 @@ class PostViewTest(BaseAcceptanceTest):
         self.assertTrue(post.title in response.content.decode('utf-8'))
 
         # Check the post text is in the response
-        self.assertTrue(post.text in response.content.decode('utf-8'))
+        self.assertTrue(markdown.markdown(post.text) in response.content.decode('utf-8'))
 
         # Check the post date is in the response
         self.assertTrue(str(post.pub_date.year) in response.content.decode('utf-8'))
         self.assertTrue(post.pub_date.strftime('%b') in response.content.decode('utf-8'))
         self.assertTrue(str(post.pub_date.day) in response.content.decode('utf-8'))
+
+        # Check the link is marked up properly
+        self.assertTrue('<a href="http://127.0.0.1:8000/">my first blog post</a>' \
+                in response.content.decode('utf-8'))
+
+
+
 
 
 
