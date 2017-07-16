@@ -19,6 +19,9 @@ from django.contrib import admin
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
 
-    #Blog URLS
+    # Blog URLS
     url(r'', include('blogengine.urls', namespace="blogengine")),
+
+    # Flat pages
+    url(r'', include('django.contrib.flatpages.urls')),
 ]

@@ -1,5 +1,6 @@
 ### Project Setup
 
+```
 mkdir django_blog
 
 cd django_blog/
@@ -45,9 +46,11 @@ python3 manage.py runserver
 git add django_blog/settings.py history.md
 
 git commit -m "first django-powered page"
+```
 
 ### Start App
 
+```
 python3 manage.py startapp blogengine
 
 python3 manage.py makemigrations
@@ -55,17 +58,21 @@ python3 manage.py makemigrations
 python3 manage.py migrate
 
 python3 manage.py sqlmigrate blogengine 0001
+```
 
 ### Creating blog posts via the admin
 
+```
 python3 manage.py createsuperuser
 
 mkdir blogengine/fixtures
 
 python3 manage.py dumpdata auth.User --indent=2 > blogengine/fixtures/user.json
+```
 
 ### Setup Bower and Bootstrap
 
+```
 NODE_PATH="/usr/local/lib/node_modules"
 
 sudo npm install -g bower
@@ -85,9 +92,11 @@ git commit -m 'add bower config'
 mkdir templates/blogengine/includes
 
 cp blogengine/static/bower_components/html5-boilerplate/dist/index.html blogengine/templates/blogengine/includes/base.html
+```
 
 ### Formatting our content
 
+```
 pip install markdown2
 
 pip freeze > requirements.txt
@@ -95,3 +104,4 @@ pip freeze > requirements.txt
 mkdir blogengine/templatetags
 
 touch blogengine/templatetags/__init__.py
+```
