@@ -1,0 +1,22 @@
+{
+  "name": "django_blog",
+  "homepage": "https://github.com/seekdestiny/blogengine",
+  "authors": [
+    "seekdestiny <jifeiqian@gmail.com>"
+  ],
+  "description": "'",
+  "main": "",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "blogengine/static/bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "^3.3.7",
+    "html5-boilerplate": "^5.3.0"
+  }
+}

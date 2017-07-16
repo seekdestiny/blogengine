@@ -50,9 +50,9 @@ git commit -m "first django-powered page"
 
 python3 manage.py startapp blogengine
 
-python manage.py makemigrations
+python3 manage.py makemigrations
 
-python manage.py migrate
+python3 manage.py migrate
 
 python3 manage.py sqlmigrate blogengine 0001
 
@@ -63,3 +63,15 @@ python3 manage.py createsuperuser
 mkdir blogengine/fixtures
 
 python3 manage.py dumpdata auth.User --indent=2 > blogengine/fixtures/user.json
+
+### Setup Bower and Bootstrap
+
+NODE_PATH="/usr/local/lib/node_modules"
+
+sudo npm install -g bower
+
+sudo chown -R $USER:$GROUP ~/.npm
+
+sudo chown -R $USER:$GROUP ~/.config
+
+bower init
