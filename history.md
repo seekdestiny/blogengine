@@ -75,3 +75,15 @@ sudo chown -R $USER:$GROUP ~/.npm
 sudo chown -R $USER:$GROUP ~/.config
 
 bower init
+
+bower install bootstrap html5-boilerplate --save
+
+git add .gitignore .bowerrc bower.json
+
+git commit -m 'add bower config'
+
+mkdir templates/blogengine/includes
+
+cp blogengine/static/bower_components/html5-boilerplate/dist/index.html blogengine/templates/blogengine/includes/base.html
+
+
