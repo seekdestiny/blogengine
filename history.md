@@ -105,3 +105,23 @@ mkdir blogengine/templatetags
 
 touch blogengine/templatetags/__init__.py
 ```
+
+### RSS Feed
+
+```
+pip instal feedparser
+
+pip freeze > requirements.txt
+```
+
+### Code coverage
+
+```
+pip install coverage django-jenkins
+
+pip freeze > requirements.txt
+
+delete with_coverage from django_jenkins.tasks
+
+python3 manage.py jenkins --enable-coverage --coverage-format html
+

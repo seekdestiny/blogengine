@@ -15,6 +15,7 @@ class PostTest(TestCase):
         # Add attributes
         tag.name = 'python'
         tag.description = 'The Python programming language'
+        tag.slug = 'python'
 
         # Save it
         tag.save()
@@ -36,6 +37,7 @@ class PostTest(TestCase):
         # Add attributes
         category.name = 'python'
         category.description = 'The Python programming language'
+        category.slug = 'python'
 
         # Save it
         category.save()
