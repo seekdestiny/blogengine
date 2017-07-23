@@ -619,7 +619,7 @@ class PostViewTest(BaseAcceptanceTest):
         self.assertTrue('<a href="http://127.0.0.1:8000/">my first blog post</a>' \
                 in response.content.decode('utf-8'))
 
-def test_category_page(self):
+    def test_category_page(self):
         # Create the category
         category = Category()
         category.name = 'python'
@@ -632,8 +632,8 @@ def test_category_page(self):
 
         # Create the site
         site = Site()
-        site.name = 'example.com'
-        site.domain = 'example.com'
+        site.name = 'test.com'
+        site.domain = 'test.com'
         site.save()
 
         # Create the post
@@ -672,9 +672,9 @@ def test_category_page(self):
         self.assertTrue(str(post.pub_date.day) in response.content.decode('utf-8'))
 
         # Check the link is marked up properly
-        self.assertTrue('<a href="http://127.0.0.1:8000/">my first blog post</a>' in response.content)
+        self.assertTrue('<a href="http://127.0.0.1:8000/">my first blog post</a>' in response.content.decode('utf-8'))
 
-def test_tag_page(self):
+    def test_tag_page(self):
         # Create the tag
         tag = Tag()
         tag.name = 'perl'
@@ -687,8 +687,8 @@ def test_tag_page(self):
 
         # Create the site
         site = Site()
-        site.name = 'example.com'
-        site.domain = 'example.com'
+        site.name = 'test.com'
+        site.domain = 'test.com'
         site.save()
 
         # Create the post
@@ -728,6 +728,18 @@ def test_tag_page(self):
 
         # Check the link is marked up properly
         self.assertTrue('<a href="http://127.0.0.1:8000/">my first blog post</a>' in response.content.decode('utf-8'))
+
+    def test_nonexistent_category_page(self):
+        category_url = '/category/blah/'
+        response = self.client.get(category_url)
+        self.assertEqual(response.status_code, 200)
+        self.assertTrue('No posts found' in response.content.decode('utf-8'))
+
+    def test_nonexistent_tag_page(self):
+        tag_url = '/tag/blah/'
+        response = self.client.get(tag_url)
+        self.assertEqual(response.status_code, 200)
+        self.assertTrue('No posts found' in response.content.decode('utf-8'))
 
 class FlatPageViewTest(BaseAcceptanceTest):
     def test_create_flat_page(self):
