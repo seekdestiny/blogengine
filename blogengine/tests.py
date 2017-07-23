@@ -92,9 +92,9 @@ class PostTest(TestCase):
 
         # Check we can find it
         all_posts = Post.objects.all()
-        self.assertEquals(len(all_posts), 1)
+        self.assertEqual(len(all_posts), 1)
         only_post = all_posts[0]
-        self.assertEquals(only_post, post)
+        self.assertEqual(only_post, post)
 
         # Check attributes
         self.assertEqual(only_post.title, 'My first post')
@@ -117,7 +117,7 @@ class PostTest(TestCase):
         post_tags = only_post.tags.all()
         self.assertEqual(len(post_tags), 1)
         only_post_tag = post_tags[0]
-        self.assertEqual(only_post_tag, tag) 
+        self.assertEqual(only_post_tag, tag)
         self.assertEqual(only_post_tag.name, 'python')
         self.assertEqual(only_post_tag.description, 'The python programming language')
 
@@ -133,7 +133,7 @@ class AdminTest(BaseAcceptanceTest):
         response = self.client.get('/admin/', follow=True)
         # Check response code
         self.assertEqual(response.status_code, 200)
-      
+        
         # Check 'Log in' in response
         self.assertTrue('Log in' in response.content.decode('utf-8'))
 
@@ -233,14 +233,14 @@ class AdminTest(BaseAcceptanceTest):
         response = self.client.post('/admin/blogengine/category/' + str(category.pk) + '/delete/', {
             'post': 'yes'
         }, follow=True)
-        self.assertEquals(response.status_code, 200)
+        self.assertEqual(response.status_code, 200)
 
         # Check deleted successfully
         self.assertTrue('deleted successfully' in response.content.decode('utf-8'))
 
         # Check category deleted
         all_categories = Category.objects.all()
-        self.assertEquals(len(all_categories), 0)
+        self.assertEqual(len(all_categories), 0)
 
     def test_create_tag(self):
         # Log in
@@ -248,7 +248,7 @@ class AdminTest(BaseAcceptanceTest):
 
         # Check response code
         response = self.client.get('/admin/blogengine/tag/add/')
-        self.assertEquals(response.status_code, 200)
+        self.assertEqual(response.status_code, 200)
 
         # Create the new tag
         response = self.client.post('/admin/blogengine/tag/add/', {
@@ -258,14 +258,14 @@ class AdminTest(BaseAcceptanceTest):
             follow=True
         )
 
-        self.assertEquals(response.status_code, 200)
+        self.assertEqual(response.status_code, 200)
 
         # Check added successfully
         self.assertTrue('added successfully' in response.content.decode('utf-8'))
 
         # Check new tag now in database
         all_tags = Tag.objects.all()
-        self.assertEquals(len(all_tags), 1)
+        self.assertEqual(len(all_tags), 1)
 
     def test_edit_tag(self):
         # Create the tag
@@ -283,17 +283,17 @@ class AdminTest(BaseAcceptanceTest):
             'description': 'The Perl programming language'
             }, follow=True)
 
-        self.assertEquals(response.status_code, 200)
+        self.assertEqual(response.status_code, 200)
 
         # Check changed successfully
         self.assertTrue('changed successfully' in response.content.decode('utf-8'))
 
         # Check tag amended
         all_tags = Tag.objects.all()
-        self.assertEquals(len(all_tags), 1)
+        self.assertEqual(len(all_tags), 1)
         only_tag = all_tags[0]
-        self.assertEquals(only_tag.name, 'perl')
-        self.assertEquals(only_tag.description, 'The Perl programming language')
+        self.assertEqual(only_tag.name, 'perl')
+        self.assertEqual(only_tag.description, 'The Perl programming language')
 
     def test_delete_tag(self):
         # Create the tag
@@ -309,14 +309,14 @@ class AdminTest(BaseAcceptanceTest):
         response = self.client.post('/admin/blogengine/tag/' + str(tag.pk) + '/delete/', {
             'post': 'yes'
         }, follow=True)
-        self.assertEquals(response.status_code, 200)
+        self.assertEqual(response.status_code, 200)
 
         # Check deleted successfully
         self.assertTrue('deleted successfully' in response.content.decode('utf-8'))
 
         # Check tag deleted
         all_tags = Tag.objects.all()
-        self.assertEquals(len(all_tags), 0)
+        self.assertEqual(len(all_tags), 0)
 
     def test_create_post(self):
         # Create the category
@@ -651,16 +651,16 @@ class PostViewTest(BaseAcceptanceTest):
 
         # Check new post saved
         all_posts = Post.objects.all()
-        self.assertEquals(len(all_posts), 1)
+        self.assertEqual(len(all_posts), 1)
         only_post = all_posts[0]
-        self.assertEquals(only_post, post)
+        self.assertEqual(only_post, post)
 
         # Get the category URL
         category_url = post.category.get_absolute_url()
 
         # Fetch the category
         response = self.client.get(category_url)
-        self.assertEquals(response.status_code, 200)
+        self.assertEqual(response.status_code, 200)
 
         # Check the category name is in the response
         self.assertTrue(post.category.name in response.content.decode('utf-8'))
@@ -706,16 +706,16 @@ class PostViewTest(BaseAcceptanceTest):
 
         # Check new post saved
         all_posts = Post.objects.all()
-        self.assertEquals(len(all_posts), 1)
+        self.assertEqual(len(all_posts), 1)
         only_post = all_posts[0]
-        self.assertEquals(only_post, post)
+        self.assertEqual(only_post, post)
 
         # Get the tag URL
         tag_url = post.tags.all()[0].get_absolute_url()
 
         # Fetch the tag
         response = self.client.get(tag_url)
-        self.assertEquals(response.status_code, 200)
+        self.assertEqual(response.status_code, 200)
 
         # Check the tag name is in the response
         self.assertTrue(post.tags.all()[0].name in response.content.decode('utf-8'))
@@ -758,7 +758,7 @@ class FlatPageViewTest(BaseAcceptanceTest):
 
         # Check new page saved
         all_pages = FlatPage.objects.all()
-        self.assertEquals(len(all_pages), 1)
+        self.assertEqual(len(all_pages), 1)
         only_page = all_pages[0]
         self.assertEqual(only_page, page)
 
@@ -821,24 +821,24 @@ class FeedTest(BaseAcceptanceTest):
 
         # Check we can find it
         all_posts = Post.objects.all()
-        self.assertEquals(len(all_posts), 1)
+        self.assertEqual(len(all_posts), 1)
         only_post = all_posts[0]
-        self.assertEquals(only_post, post)
+        self.assertEqual(only_post, post)
 
         # Fetch the feed
         response = self.client.get('/feeds/posts/')
-        self.assertEquals(response.status_code, 200)
+        self.assertEqual(response.status_code, 200)
 
         # Parse the feed
         feed = feedparser.parse(response.content.decode('utf-8'))
 
         # Check length
-        self.assertEquals(len(feed.entries), 1)
+        self.assertEqual(len(feed.entries), 1)
 
         # Check post retrieved is the correct one
         feed_post = feed.entries[0]
-        self.assertEquals(feed_post.title, post.title)
-        self.assertEquals(feed_post.description, post.text)
+        self.assertEqual(feed_post.title, post.title)
+        self.assertEqual(feed_post.description, post.text)
 
 
 
