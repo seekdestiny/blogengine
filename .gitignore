@@ -3,3 +3,5 @@ blogenv/
 db.sqlite3
 *.swp
 blogengine/static/bower_components/
+reports/
+htmlcov/
