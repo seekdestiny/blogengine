@@ -135,3 +135,17 @@ pip freeze > requirements.txt
 
 git add .gitignore .travis.yml requirements.txt
 ```
+
+### Deploying to Heroku
+
+```
+heroku login
+
+write Procfile
+
+foreman start
+
+pull static file to master
+
+change wsgi.py
+```
