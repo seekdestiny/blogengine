@@ -149,3 +149,13 @@ pull static file to master
 
 change wsgi.py
 ```
+
+### Deployment
+
+```
+heroku login
+
+heroku apps:create blog-jeffqian
+
+git push heroku master
+
