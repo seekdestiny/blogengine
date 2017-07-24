@@ -145,7 +145,7 @@ write Procfile
 
 foreman start
 
-pull static file to master
+push static file to master
 
 change wsgi.py
 ```
@@ -159,3 +159,19 @@ heroku apps:create blog-jeffqian
 
 git push heroku master
 
+heroku config:set DISABLE_COLLECTSTATIC=1
+
+heroku run python3 manage.py makemigrations
+
+heroku run python3 manage.py migrate
+
+heroku open
+
+heroku run python3 manage.py createsuperuser
+
+heroku domains:add www.jifeiqian.com
+
+heroku domains
+
+host www.jifeiqian.com
+```
