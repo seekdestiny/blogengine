@@ -124,4 +124,14 @@ pip freeze > requirements.txt
 delete with_coverage from django_jenkins.tasks
 
 python3 manage.py jenkins --enable-coverage --coverage-format html
+```
 
+### Setting up Continuous Integration and coverage
+
+```
+pip install coveralls
+
+pip freeze > requirements.txt
+
+git add .gitignore .travis.yml requirements.txt
+```

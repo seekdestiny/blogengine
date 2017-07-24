@@ -180,7 +180,7 @@ class AdminTest(BaseAcceptanceTest):
         response = self.client.post('/admin/blogengine/category/add/', {
             'name': 'python',
             'description': 'The Python programming language'
-            },
+            }, 
             follow=True
         )
         self.assertEqual(response.status_code, 200)
