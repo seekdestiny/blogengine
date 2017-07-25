@@ -175,3 +175,31 @@ heroku domains
 
 host www.jifeiqian.com
 ```
+
+### Syntax highlighting
+
+```
+pip install markdown2 Pygments
+
+pip freeze > requirements.txt
+
+mkdir blogengine/static/css
+
+touch blogengine/static/css/main.css
+
+pygmentize -S default -f html > blogengine/static/css/code.css
+
+pygmentize -L styles
+
+pygmentize -S tango -f html > blogengine/static/css/code.css
+
+pygmentize -S monokai -f html > blogengine/static/css/code.css
+
+pip install pygments-style-solarized
+
+pygmentize -S solarizedlight -f html > blogengine/static/css/code.css
+
+pygmentize -S solarizeddark -f html > blogengine/static/css/code.css
+
+pip freeze > requirements.txt
+```
