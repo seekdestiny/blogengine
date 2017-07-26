@@ -6,6 +6,7 @@
         <title>{% block title %}Jeff Qian's Blog{% endblock %}</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="alternate" type="application/rss+xml" title="Blog posts" href="/feeds/posts/">
 
         <link rel="apple-touch-icon" href="apple-touch-icon.png">
         <!-- Place favicon.ico in the root directory -->
@@ -17,8 +18,6 @@
         <link rel="stylesheet" href="{% static 'bower_components/bootstrap/dist/css/bootstrap-theme.min.css' %}">
         <link rel="stylesheet" href="{% static 'css/main.css' %}">
         <link rel="stylesheet" href="{% static 'css/code.css' %}">
-
-
         <script src="{% static 'bower_components/html5-boilerplate/dist/js/vendor/modernizr-2.8.3.min.js' %}"></script>
     </head>
     <body>
@@ -27,40 +26,56 @@
         <![endif]-->
         
         <!-- Add your site or application content here -->
-        <div class="navbar navbar-static-top navbar-inverse">
-            <div class="navbar-inner">
-                <div class="container">
-                    <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+        <nav class="navbar navbar-fixed-top navbar-inverse">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
-                    </a>
-                    <a class="brand" href="/">Jeff Qian's Blog</a>
-                    <div class="nav-collapse collapse">
-                    </div>
+                    </button>
+                    <a class="navbar-brand" href="/">Jeff Qian's Blog</a>
+                </div>
+                <div class="collapse nav-collapse" id="navbar">
+                    <ul class="nav navbar-nav">
+                        {% load flatpages %}
+                        {% get_flatpages as flatpages %}
+                        {% for flatpage in flatpages %}
+                            <li><a href="{{ flatpage.url }}">{{ flatpage.title }}</a></li>
+                        {% endfor %}
+                        <li><a href="/feeds/posts/">RSS feed</a></li>
+                    </ul>    
                 </div>
             </div>
-        </div>
+        </nav>
+
+        <header class="jumbotron">
+            <div class="container">
+                <div class="row row-header">
+                    {% block header %}
+                    <div class="page-header">
+                        <h1>Jeff Qian's Blog</h1>
+                    </div>
+                    {% endblock %}
+                </div>
+            </div>
+        </header>
 
         <div class="container">
-            {% block header %}
-                <div class="page-header">
-                    <h1>Jeff Qian's Blog</h1>
-                </div>
-            {% endblock %}
-
-            <div class="row">
+            <div class="row row-content">
                 {% block content %}{% endblock %}
             </div>
         </div>
 
-        <div class="container footer">
-            <div class="row">
-                <div class="span12">
-                    <p>Copyright &copy; {% now "Y" %}</p>
+        <footer class="row-footer">
+            <div class="container">
+                <div class="row">
+                    <div class="span12">
+                        <p>Copyright &copy; {% now "Y" %}</p>
+                    </div>
                 </div>
             </div>
-        </div>
+        </footer>
 
         <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
         <script>window.jQuery || document.write('<script src="{% static 'bower_components/html5-boilerplate/js/vendor/jquery-1.12.0.min.js' %}"><\/script>')</script>
