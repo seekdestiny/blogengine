@@ -203,3 +203,13 @@ pygmentize -S solarizeddark -f html > blogengine/static/css/code.css
 
 pip freeze > requirements.txt
 ```
+
+### Memcached
+
+```
+pip install pylibmc django-pylibmc-sasl
+
+pip freeze > requirements.txt
+
+heroku addons:add memcachier:dev
+```
