@@ -8,7 +8,6 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="alternate" type="application/rss+xml" title="Blog posts" href="/feeds/posts/">
 
-        <link rel="apple-touch-icon" href="apple-touch-icon.png">
         <!-- Place favicon.ico in the root directory -->
 
         {% load staticfiles %}
@@ -26,7 +25,7 @@
         <![endif]-->
         
         <!-- Add your site or application content here -->
-        <nav class="navbar navbar-fixed-top navbar-inverse">
+        <nav class="navbar navbar-toggleable-md navbar-fixed-top navbar-inverse">
             <div class="container-fluid">
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
@@ -41,9 +40,11 @@
                         {% load flatpages %}
                         {% get_flatpages as flatpages %}
                         {% for flatpage in flatpages %}
-                            <li><a href="{{ flatpage.url }}">{{ flatpage.title }}</a></li>
+                            <li class="nav-item"><a href="{{ flatpage.url }}">{{ flatpage.title }}</a></li>
                         {% endfor %}
-                        <li><a href="/feeds/posts/">RSS feed</a></li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/feeds/posts/">RSS feed</a>
+                        </li>
                     </ul>    
                 </div>
             </div>
