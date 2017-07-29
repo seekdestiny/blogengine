@@ -207,7 +207,7 @@ pip freeze > requirements.txt
 ### Memcached
 
 ```
-pip install pylibmc django-pylibmc-sasl
+pip install pylibmc django-pylibmc
 
 pip freeze > requirements.txt
 
