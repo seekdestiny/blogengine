@@ -25,30 +25,28 @@
         <![endif]-->
         
         <!-- Add your site or application content here -->
-        <nav class="navbar navbar-toggleable-md navbar-fixed-top navbar-inverse">
+        <div class="navbar navbar-toggleable-md navbar-fixed-top navbar-inverse">
             <div class="container-fluid">
                 <div class="navbar-header">
-                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#header-bar">
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
                     <a class="navbar-brand" href="/">Jeff Qian's Blog</a>
                 </div>
-                <div class="collapse nav-collapse" id="navbar">
+                <div class="collapse nav-collapse" id="header-bar">
                     <ul class="nav navbar-nav">
                         {% load flatpages %}
                         {% get_flatpages as flatpages %}
                         {% for flatpage in flatpages %}
-                            <li class="nav-item"><a href="{{ flatpage.url }}">{{ flatpage.title }}</a></li>
+                            <li><a href="{{ flatpage.url }}">{{ flatpage.title }}</a></li>
                         {% endfor %}
-                        <li class="nav-item">
-                            <a class="nav-link" href="/feeds/posts/">RSS feed</a>
-                        </li>
+                        <li><a class="nav-link" href="/feeds/posts/">RSS feed</a></li>
                     </ul>    
                 </div>
             </div>
-        </nav>
+        </div>
 
         <header class="jumbotron">
             <div class="container">
