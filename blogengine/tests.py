@@ -815,11 +815,7 @@ class PostViewTest(BaseAcceptanceTest):
 class FlatPageViewTest(BaseAcceptanceTest):
     def test_create_flat_page(self):
         # Create flat page
-        page = FlatPage()
-        page.url = '/about/'
-        page.title = 'About me'
-        page.content = 'All about me'
-        page.save()
+        page = FlatPageFactory()
 
         # Add the site
         page.sites.add(Site.objects.all()[0])
