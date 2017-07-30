@@ -6,6 +6,89 @@ from django.contrib.flatpages.models import FlatPage
 from django.contrib.sites.models import Site
 from django.contrib.auth.models import User
 import feedparser
+import factory.django
+
+# Factories for tests
+class SiteFactory(factory.django.DjangoModelFactory):
+    class Meta:
+        model = Site
+        django_get_or_create = (
+            'name',
+            'domain'
+        )
+        
+    name = 'test.com'
+    domain = 'test.com'
+
+class CategoryFactory(factory.django.DjangoModelFactory):
+    class Meta:
+        model = Category
+        django_get_or_create = (
+            'name',
+            'description',
+            'slug'
+        )
+    
+    name = 'python'
+    description = 'The Python programming language'
+    slug = 'python'
+
+
+class TagFactory(factory.django.DjangoModelFactory):
+    class Meta:
+        model = Tag
+        django_get_or_create = (
+            'name',
+            'description',
+            'slug'
+        )
+    
+    name = 'python'
+    description = 'The Python programming language'
+    slug = 'python'
+
+
+class AuthorFactory(factory.django.DjangoModelFactory):
+    class Meta:
+        model = User
+        django_get_or_create = ('username','email', 'password',)
+
+    username = 'testuser'
+    email = 'user@example.com'
+    password = 'password'
+
+
+class FlatPageFactory(factory.django.DjangoModelFactory):
+    class Meta:
+        model = FlatPage
+        django_get_or_create = (
+            'url',
+            'title',
+            'content'
+        )
+
+    url = '/about/'
+    title = 'About me'
+    content = 'All about me'
+
+
+class PostFactory(factory.django.DjangoModelFactory):
+    class Meta:
+        model = Post
+        django_get_or_create = (
+            'title',
+            'text',
+            'slug',
+            'pub_date'
+        )
+
+    title = 'My first post'
+    text = 'This is my first blog post'
+    slug = 'my-first-post'
+    pub_date = timezone.now()
+    author = factory.SubFactory(AuthorFactory)
+    site = factory.SubFactory(SiteFactory)
+    category = factory.SubFactory(CategoryFactory)
 
 class PostTest(TestCase):
     def test_create_tag(self):
@@ -66,10 +149,7 @@ class PostTest(TestCase):
         author.save()
 
         # Create the site
-        site = Site()
-        site.name = 'test.com'
-        site.domain = 'test.com'
-        site.save()
+        site = SiteFactory()
 
         # Create the post
         post = Post()
@@ -415,10 +495,7 @@ class AdminTest(BaseAcceptanceTest):
         author.save()
 
         # Create the site
-        site = Site()
-        site.name = 'test.com'
-        site.domain = 'test.com'
-        site.save()
+        site = SiteFactory()
 
         # Create the post
         post = Post()
@@ -478,10 +555,7 @@ class AdminTest(BaseAcceptanceTest):
         author.save()
 
         # Create the site
-        site = Site()
-        site.name = 'test.com'
-        site.domain = 'test.com'
-        site.save()
+        site = SiteFactory()
 
         # Create the post
         post = Post()
@@ -538,10 +612,7 @@ class PostViewTest(BaseAcceptanceTest):
         author.save()
 
         # Create the site
-        site = Site()
-        site.name = 'test.com'
-        site.domain = 'test.com'
-        site.save()
+        site = SiteFactory()
 
         # Create the first post
         post = Post()
@@ -599,10 +670,7 @@ class PostViewTest(BaseAcceptanceTest):
         author.save()
 
         # Create the site
-        site = Site()
-        site.name = 'test.com'
-        site.domain = 'test.com'
-        site.save()
+        site = SiteFactory()
 
         # Create the post
         post = Post()
@@ -665,10 +733,7 @@ class PostViewTest(BaseAcceptanceTest):
         author.save()
 
         # Create the site
-        site = Site()
-        site.name = 'test.com'
-        site.domain = 'test.com'
-        site.save()
+        site = SiteFactory()
 
         # Create the post
         post = Post()
@@ -730,10 +795,7 @@ class PostViewTest(BaseAcceptanceTest):
         author.save()
 
         # Create the site
-        site = Site()
-        site.name = 'test.com'
-        site.domain = 'test.com'
-        site.save()
+        site = SiteFactory()
 
         # Create the post
         post = Post()
@@ -785,10 +847,7 @@ class PostViewTest(BaseAcceptanceTest):
         author.save()
 
         # Create the site
-        site = Site()
-        site.name = 'test.com'
-        site.domain = 'test.com'
-        site.save()
+        site = SiteFactory()
 
         # Create the post
         post = Post()
@@ -894,10 +953,7 @@ class FeedTest(BaseAcceptanceTest):
         author.save()
 
         # Create the site
-        site = Site()
-        site.name = 'test.com'
-        site.domain = 'test.com'
-        site.save()
+        site = SiteFactory()
 
         # Create a post
         post = Post()

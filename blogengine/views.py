@@ -26,7 +26,7 @@ class TagListView(ListView):
             return Post.objects.none()
 
 class PostsFeed(Feed):
-    title = "RSS feed - posts"
+    title = "Jeff Qian's Blog"
     link = "feeds/posts/"
     description = "RSS feed - blog posts"
 
