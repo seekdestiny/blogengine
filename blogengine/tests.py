@@ -43,9 +43,9 @@ class TagFactory(factory.django.DjangoModelFactory):
             'slug'
         )
     
-    name = 'python'
-    description = 'The Python programming language'
-    slug = 'python'
+    name = 'perl'
+    description = 'The Perl programming language'
+    slug = 'perl'
 
 
 class AuthorFactory(factory.django.DjangoModelFactory):
@@ -93,15 +93,7 @@ class PostFactory(factory.django.DjangoModelFactory):
 class PostTest(TestCase):
     def test_create_tag(self):
         # Create the tag
-        tag = Tag()
-
-        # Add attributes
-        tag.name = 'python'
-        tag.description = 'The Python programming language'
-        tag.slug = 'python'
-
-        # Save it
-        tag.save()
+        tag = TagFactory()
 
         # Check we can find it
         all_tags = Tag.objects.all()
@@ -110,8 +102,8 @@ class PostTest(TestCase):
         self.assertEqual(only_tag, tag)
 
         # Check attributes
-        self.assertEqual(only_tag.name, 'python')
-        self.assertEqual(only_tag.description, 'The Python programming language')
+        self.assertEqual(only_tag.name, 'perl')
+        self.assertEqual(only_tag.description, 'The Perl programming language')
 
     def test_create_category(self):
         # Create the category
@@ -128,10 +120,7 @@ class PostTest(TestCase):
         category = CategoryFactory()
 
         # Create the tag
-        tag = Tag()
-        tag.name = 'python'
-        tag.description = 'The python programming language'
-        tag.save()
+        tag = TagFactory()
 
         # Create the author
         author = User.objects.create_user('testuser', 'user@example.com', 'password')
@@ -187,8 +176,8 @@ class PostTest(TestCase):
         self.assertEqual(len(post_tags), 1)
         only_post_tag = post_tags[0]
         self.assertEqual(only_post_tag, tag)
-        self.assertEqual(only_post_tag.name, 'python')
-        self.assertEqual(only_post_tag.description, 'The python programming language')
+        self.assertEqual(only_post_tag.name, 'perl')
+        self.assertEqual(only_post_tag.description, 'The Perl programming language')
 
 class BaseAcceptanceTest(LiveServerTestCase):
     def setUp(self):
@@ -332,10 +321,7 @@ class AdminTest(BaseAcceptanceTest):
 
     def test_edit_tag(self):
         # Create the tag
-        tag = Tag()
-        tag.name = 'python'
-        tag.description = 'The Python programming language'
-        tag.save()
+        tag = TagFactory()
 
         # Log in
         self.client.login(username='jeffqian', password="Qx6y123Y")
@@ -360,10 +346,7 @@ class AdminTest(BaseAcceptanceTest):
 
     def test_delete_tag(self):
         # Create the tag
-        tag = Tag()
-        tag.name = 'python'
-        tag.description = 'The Python programming language'
-        tag.save()
+        tag = TagFactory()
 
         # Log in
         self.client.login(username='jeffqian', password="Qx6y123Y")
@@ -386,10 +369,7 @@ class AdminTest(BaseAcceptanceTest):
         category = CategoryFactory()
 
         # Create the tag
-        tag = Tag()
-        tag.name = 'python'
-        tag.description = 'The Python programming language'
-        tag.save()
+        tag = TagFactory()
 
         # Log in
         self.client.login(username='jeffqian', password='Qx6y123Y')
@@ -459,10 +439,7 @@ class AdminTest(BaseAcceptanceTest):
         category = CategoryFactory()
 
         # Create the tag
-        tag = Tag()
-        tag.name = 'python'
-        tag.description = 'The Python programming language'
-        tag.save()
+        tag = TagFactory()
 
         # Create the author
         author = User.objects.create_user('testuser', 'user@example.com', 'password')
@@ -516,10 +493,7 @@ class AdminTest(BaseAcceptanceTest):
         category = CategoryFactory()
 
         # Create the tag
-        tag = Tag()
-        tag.name = 'python'
-        tag.description = 'The Python programming language'
-        tag.save()
+        tag = TagFactory()
 
         # Create the author
         author = User.objects.create_user('testuser', 'user@example.com', 'password')
@@ -570,10 +544,7 @@ class PostViewTest(BaseAcceptanceTest):
         category = CategoryFactory()
 
         # Create the tag
-        tag = Tag()
-        tag.name = 'perl'
-        tag.description = 'The Perl programming language'
-        tag.save()
+        tag = TagFactory()
 
         # Create the author
         author = User.objects.create_user('testuser', 'user@example.com', 'password')
@@ -625,10 +596,7 @@ class PostViewTest(BaseAcceptanceTest):
         category = CategoryFactory()
 
         # Create the tag
-        tag = Tag()
-        tag.name = 'perl'
-        tag.description = 'The Perl programming language'
-        tag.save()
+        tag = TagFactory()
 
         # Create the author
         author = User.objects.create_user('testuser', 'user@example.com', 'password')
@@ -685,10 +653,7 @@ class PostViewTest(BaseAcceptanceTest):
         category = CategoryFactory()
 
         # Create the tag
-        tag = Tag()
-        tag.name = 'perl'
-        tag.description = 'The Perl programming language'
-        tag.save()
+        tag = TagFactory()
 
         # Create the author
         author = User.objects.create_user('testuser', 'user@example.com', 'password')
@@ -796,10 +761,7 @@ class PostViewTest(BaseAcceptanceTest):
 
     def test_tag_page(self):
         # Create the tag
-        tag = Tag()
-        tag.name = 'perl'
-        tag.description = 'The Perl programming language'
-        tag.save()
+        tag = TagFactory()
 
         # Create the author
         author = User.objects.create_user('testuser', 'user@example.com', 'password')
@@ -899,10 +861,7 @@ class FeedTest(BaseAcceptanceTest):
         category = CategoryFactory()
 
         # Create the tag
-        tag = Tag()
-        tag.name = 'perl'
-        tag.description = 'The Perl programming language'
-        tag.save()
+        tag = TagFactory()
 
         # Create the author
         author = User.objects.create_user('testuser', 'user@example.com', 'password')
