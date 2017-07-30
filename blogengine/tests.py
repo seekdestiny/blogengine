@@ -115,15 +115,7 @@ class PostTest(TestCase):
 
     def test_create_category(self):
         # Create the category
-        category = Category()
-
-        # Add attributes
-        category.name = 'python'
-        category.description = 'The Python programming language'
-        category.slug = 'python'
-
-        # Save it
-        category.save()
+        category = CategoryFactory()
 
         # Check we can find it
         all_categories = Category.objects.all()
@@ -133,12 +125,9 @@ class PostTest(TestCase):
 
     def test_create_post(self):
         # Create the category
-        category = Category()
-        category.name = 'python'
-        category.description = 'The python programming language'
-        category.save()
+        category = CategoryFactory()
 
-        # Create the category
+        # Create the tag
         tag = Tag()
         tag.name = 'python'
         tag.description = 'The python programming language'
@@ -191,7 +180,7 @@ class PostTest(TestCase):
         self.assertEqual(only_post.author.username, 'testuser')
         self.assertEqual(only_post.author.email, 'user@example.com')
         self.assertEqual(only_post.category.name, 'python')
-        self.assertEqual(only_post.category.description, 'The python programming language')
+        self.assertEqual(only_post.category.description, 'The Python programming language')
 
         # Check tags
         post_tags = only_post.tags.all()
@@ -274,10 +263,7 @@ class AdminTest(BaseAcceptanceTest):
 
     def test_edit_category(self):
         # Create the category
-        category = Category()
-        category.name = 'python'
-        category.description = 'The Python programming language'
-        category.save()
+        category = CategoryFactory()
 
         # Log in
         self.client.login(username='jeffqian', password="Qx6y123Y")
@@ -301,10 +287,7 @@ class AdminTest(BaseAcceptanceTest):
 
     def test_delete_category(self):
         # Create the category
-        category = Category()
-        category.name = 'python'
-        category.description = 'The Python programming language'
-        category.save()
+        category = CategoryFactory()
 
         # Log in
         self.client.login(username='jeffqian', password="Qx6y123Y")
@@ -400,10 +383,7 @@ class AdminTest(BaseAcceptanceTest):
 
     def test_create_post(self):
         # Create the category
-        category = Category()
-        category.name = 'python'
-        category.description = 'The Python programming language'
-        category.save()
+        category = CategoryFactory()
 
         # Create the tag
         tag = Tag()
@@ -443,10 +423,7 @@ class AdminTest(BaseAcceptanceTest):
 
     def test_create_post_without_tag(self):
         # Create the category
-        category = Category()
-        category.name = 'python'
-        category.description = 'The Python programming language'
-        category.save()
+        category = CategoryFactory()
 
         # Log in
         self.client.login(username='jeffqian', password='Qx6y123Y')
@@ -479,10 +456,7 @@ class AdminTest(BaseAcceptanceTest):
 
     def test_edit_post(self):
         # Create the category
-        category = Category()
-        category.name = 'python'
-        category.description = 'The Python programming language'
-        category.save()
+        category = CategoryFactory()
 
         # Create the tag
         tag = Tag()
@@ -539,10 +513,7 @@ class AdminTest(BaseAcceptanceTest):
 
     def test_delete_post(self):
         # Create the category
-        category = Category()
-        category.name = 'python'
-        category.description = 'The Python programming language'
-        category.save()
+        category = CategoryFactory()
 
         # Create the tag
         tag = Tag()
@@ -596,10 +567,7 @@ class AdminTest(BaseAcceptanceTest):
 class PostViewTest(BaseAcceptanceTest):
     def test_clear_cache(self):
         # Create the category
-        category = Category()
-        category.name = 'python'
-        category.description = 'The Python programming language'
-        category.save()
+        category = CategoryFactory()
 
         # Create the tag
         tag = Tag()
@@ -654,10 +622,7 @@ class PostViewTest(BaseAcceptanceTest):
     
     def test_index(self):
         # Create the category
-        category = Category()
-        category.name = 'python'
-        category.description = 'The Python programming language'
-        category.save()
+        category = CategoryFactory()
 
         # Create the tag
         tag = Tag()
@@ -717,10 +682,7 @@ class PostViewTest(BaseAcceptanceTest):
 
     def test_post_page(self):
         # Create the category
-        category = Category()
-        category.name = 'python'
-        category.description = 'The Python programming language'
-        category.save()
+        category = CategoryFactory()
 
         # Create the tag
         tag = Tag()
@@ -785,10 +747,7 @@ class PostViewTest(BaseAcceptanceTest):
 
     def test_category_page(self):
         # Create the category
-        category = Category()
-        category.name = 'python'
-        category.description = 'The Python programming language'
-        category.save()
+        category = CategoryFactory()
 
         # Create the author
         author = User.objects.create_user('testuser', 'user@example.com', 'password')
@@ -937,10 +896,7 @@ class FlatPageViewTest(BaseAcceptanceTest):
 class FeedTest(BaseAcceptanceTest):
     def test_all_post_feed(self):
         # Create the category
-        category = Category()
-        category.name = 'python'
-        category.description = 'The Python programming language'
-        category.save()
+        category = CategoryFactory()
 
         # Create the tag
         tag = Tag()
