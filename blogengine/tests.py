@@ -129,19 +129,7 @@ class PostTest(TestCase):
         site = SiteFactory()
 
         # Create the post
-        post = Post()
-
-        # Set the attributes
-        post.title = 'My first post'
-        post.text = 'This is my first blog post'
-        post.slug = 'my-first-post'
-        post.pub_date = timezone.now()
-        post.author = author
-        post.site = site
-        post.category = category
-
-        # Save it
-        post.save()
+        post = PostFactory()
 
         # Add the tag
         post.tags.add(tag)
@@ -447,13 +435,7 @@ class AdminTest(BaseAcceptanceTest):
         site = SiteFactory()
 
         # Create the post
-        post = Post()
-        post.title = 'My first post'
-        post.text = 'This is my first blog post'
-        post.pub_date = timezone.now()
-        post.author = author
-        post.site = site
-        post.save()
+        post = PostFactory()
         post.tags.add(tag)
         post.save()
 
@@ -500,15 +482,7 @@ class AdminTest(BaseAcceptanceTest):
         site = SiteFactory()
 
         # Create the post
-        post = Post()
-        post.title = 'My first post'
-        post.text = 'This is my first blog post'
-        post.slug = 'my-first-post'
-        post.pub_date = timezone.now()
-        post.author = author
-        post.site = site
-        post.category = category
-        post.save()
+        post = PostFactory()
         post.tags.add(tag)
         post.save()
 
@@ -550,15 +524,7 @@ class PostViewTest(BaseAcceptanceTest):
         site = SiteFactory()
 
         # Create the first post
-        post = Post()
-        post.title = 'My first post'
-        post.text = 'This is [my first blog post](http://127.0.0.1:8000/)'
-        post.slug = 'my-first-post'
-        post.pub_date = timezone.now()
-        post.author = author
-        post.site = site
-        post.category = category
-        post.save()
+        post = PostFactory(text='This is [my first blog post](http://127.0.0.1:8000/)')
         post.tags.add(tag)
 
         # Check new post saved
@@ -570,15 +536,9 @@ class PostViewTest(BaseAcceptanceTest):
         self.assertEquals(response.status_code, 200)
 
         # Create the second post
-        post = Post()
-        post.title = 'My second post'
-        post.text = 'This is [my second blog post](http://127.0.0.1:8000/)'
-        post.slug = 'my-second-post'
-        post.pub_date = timezone.now()
-        post.author = author
-        post.site = site
-        post.category = category
-        post.save()
+        post = PostFactory(title='My second post',
+                text='This is [my second blog post](http://127.0.0.1:8000/)', 
+                slug='my-second-post')
         post.tags.add(tag)
 
         # Fetch the index again
@@ -601,15 +561,7 @@ class PostViewTest(BaseAcceptanceTest):
         site = SiteFactory()
 
         # Create the post
-        post = Post()
-        post.title = 'My first post'
-        post.text = 'This is [my first blog post](http://127.0.0.1:8000/)'
-        post.slug = 'my-first-post'
-        post.pub_date = timezone.now()
-        post.author = author
-        post.site = site
-        post.category = category
-        post.save()
+        post = PostFactory(text='This is [my first blog post](http://127.0.0.1:8000/)')
         post.tags.add(tag)
         post.save()
 
@@ -657,15 +609,7 @@ class PostViewTest(BaseAcceptanceTest):
         site = SiteFactory()
 
         # Create the post
-        post = Post()
-        post.title = 'My first post'
-        post.text = 'This is [my first blog post](http://127.0.0.1:8000/)'
-        post.slug = 'my-first-post'
-        post.pub_date = timezone.now()
-        post.author = author
-        post.site = site
-        post.category = category
-        post.save()
+        post = PostFactory(text='This is [my first blog post](http://127.0.0.1:8000/)')
         post.tags.add(tag)
         post.save()
 
@@ -715,15 +659,7 @@ class PostViewTest(BaseAcceptanceTest):
         site = SiteFactory()
 
         # Create the post
-        post = Post()
-        post.title = 'My first post'
-        post.text = 'This is [my first blog post](http://127.0.0.1:8000/)'
-        post.slug = 'my-first-post'
-        post.pub_date = timezone.now()
-        post.author = author
-        post.site = site
-        post.category = category
-        post.save()
+        post = PostFactory(text='This is [my first blog post](http://127.0.0.1:8000/)')
 
         # Check new post saved
         all_posts = Post.objects.all()
@@ -763,14 +699,7 @@ class PostViewTest(BaseAcceptanceTest):
         site = SiteFactory()
 
         # Create the post
-        post = Post()
-        post.title = 'My first post'
-        post.text = 'This is [my first blog post](http://127.0.0.1:8000/)'
-        post.slug = 'my-first-post'
-        post.pub_date = timezone.now()
-        post.author = author
-        post.site = site
-        post.save()
+        post = PostFactory(text='This is [my first blog post](http://127.0.0.1:8000/)')
         post.tags.add(tag)
 
         # Check new post saved
@@ -858,17 +787,7 @@ class FeedTest(BaseAcceptanceTest):
         site = SiteFactory()
 
         # Create a post
-        post = Post()
-        post.title = 'My first post'
-        post.text = 'This is my *first* blog post'
-        post.slug = 'my-first-post'
-        post.pub_date = timezone.now()
-        post.author = author
-        post.site = site
-        post.category = category
-
-        # Save it
-        post.save()
+        post = PostFactory(text='This is my *first* blog post')
 
         # Add the tag
         post.tags.add(tag)
