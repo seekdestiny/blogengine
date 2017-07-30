@@ -27,7 +27,7 @@ class TagListView(ListView):
 
 class PostsFeed(Feed):
     title = "Jeff Qian's Blog"
-    link = "feeds/posts/"
+    link = '/'
     description = "Jeff Qian's Blog"
 
     def items(self):
