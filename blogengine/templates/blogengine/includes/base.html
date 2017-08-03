@@ -4,7 +4,8 @@
         <meta charset="utf-8">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
         <title>{% block title %}Jeff Qian's Blog{% endblock %}</title>
-        <meta name="description" content="">
+        <meta name="description" content="Welcome to Jeff Qian's personal page.">
+        <meta name="author" content="Jeff Qian">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="alternate" type="application/rss+xml" title="Blog posts" href="/feeds/posts/">
 
@@ -15,8 +16,10 @@
         <link rel="stylesheet" href="{% static 'bower_components/html5-boilerplate/dist/css/main.css' %}">
         <link rel="stylesheet" href="{% static 'bower_components/bootstrap/dist/css/bootstrap.min.css' %}">
         <link rel="stylesheet" href="{% static 'bower_components/bootstrap/dist/css/bootstrap-theme.min.css' %}">
+        <link rel="stylesheet" href="{% static 'bower_components/font-awesome/css/font-awesome.min.css' %}">
         <link rel="stylesheet" href="{% static 'css/main.css' %}">
         <link rel="stylesheet" href="{% static 'css/code.css' %}">
+        <link rel="stylesheet" href="{% static 'css/sidebar.css' %}">
         <script src="{% static 'bower_components/html5-boilerplate/dist/js/vendor/modernizr-2.8.3.min.js' %}"></script>
     </head>
     <body>
@@ -25,61 +28,132 @@
         <![endif]-->
         
         <!-- Add your site or application content here -->
-        <div class="navbar navbar-toggleable-md navbar-fixed-top navbar-inverse">
-            <div class="container-fluid">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#header-bar">
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <a class="navbar-brand" href="/">Jeff Qian's Blog</a>
+        <div class="blog">
+            <!-- Sidebar -->
+            <nav id="sidebar">
+                <!-- Sidebar Header-->
+                <div class="sidebar-header">
+                    <h3>Jeff Qian</h3>
                 </div>
-                <div class="collapse nav-collapse" id="header-bar">
-                    <ul class="nav navbar-nav">
-                        {% load flatpages %}
-                        {% get_flatpages as flatpages %}
-                        {% for flatpage in flatpages %}
-                            <li><a href="{{ flatpage.url }}">{{ flatpage.title }}</a></li>
-                        {% endfor %}
-                        <li><a class="nav-link" href="/feeds/posts/">RSS feed</a></li>
-                    </ul>    
+
+                <ul class="sidebar-buttons">
+                    <li class="sidebar-button">
+                        <a class="side-button-link" href="/">
+                            <i class="side-button-icon fa fa-lg fa-home"></i>
+                            <span class="sidebar-button-desc">Home</span>
+                        </a>
+                    </li>
+
+                    <li class="sidebar-button">
+                        <a class="side-button-link" href="/">
+                            <i class="side-button-icon fa fa-lg fa-bookmark"></i>
+                            <span class="sidebar-button-desc">Categories</span>
+                        </a>
+                    </li>
+
+                    <li class="sidebar-button">
+                        <a class="side-button-link" href="/">
+                            <i class="side-button-icon fa fa-lg fa-tags"></i>
+                            <span class="sidebar-button-desc">Tags</span>
+                        </a>
+                    </li>
+
+                    <li class="sidebar-button">
+                        <a class="side-button-link" href="/">
+                            <i class="side-button-icon fa fa-lg fa-archive"></i>
+                            <span class="sidebar-button-desc">Archives</span>
+                        </a>
+                    </li>
+
+                    <li class="sidebar-button">
+                        <a class="side-button-link" href="/">
+                            <i class="side-button-icon fa fa-lg fa-search"></i>
+                            <span class="sidebar-button-desc">Search</span>
+                        </a>
+                    </li>
+
+                    <li class="sidebar-button">
+                        <a class="side-button-link" href="/">
+                            <i class="side-button-icon fa fa-lg fa-vcard"></i>
+                            <span class="sidebar-button-desc">Resume</span>
+                        </a>
+                    </li>
+                </ul>
+                
+                <ul class="sidebar-buttons">
+                    <li class="sidebar-button">
+                        <a class="side-button-link" href="/">
+                            <i class="side-button-icon fa fa-lg fa-linkedin"></i>
+                            <span class="sidebar-button-desc">LinkedIn</span>
+                        </a>
+                    </li>
+
+                    <li class="sidebar-button">
+                        <a class="side-button-link" href="/">
+                            <i class="side-button-icon fa fa-lg fa-github"></i>
+                            <span class="sidebar-button-desc">Github</span>
+                        </a>
+                    </li>
+
+                    <li class="sidebar-button">
+                        <a class="side-button-link" href="/">
+                            <i class="side-button-icon fa fa-lg fa-facebook"></i>
+                            <span class="sidebar-button-desc">Facebook</span>
+                        </a>
+                    </li>
+                </ul>
+
+                <ul class="sidebar-buttons">
+                    <li class="sidebar-button">
+                        <a class="side-button-link" href="/feeds/posts/">
+                            <i class="side-button-icon fa fa-lg fa-rss"></i>
+                            <span class="sidebar-button-desc">RSS</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+            <!-- End Sidebar -->
+
+            <div id="main">
+                <!-- Page Content -->
+                <div id ="content" class="container-fluid">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <button type="button" class="btn btn-info navbar-btn" id="menu-toggle">
+                                <i class="glyphicon glyphicon-align-left"></i>
+                                Toggle Menu
+                            </button>
+                            {% block content %}{% endblock %}
+                        </div>
+                    </div>
                 </div>
+                <!-- End Page Content -->
+
+                <!-- Footer -->
+                <footer id="footer" class="container-fluid">
+                    <div class="row">
+                        <span class="col-lg-12">
+                            <p>Copyright &copy; {% now "Y" %} Jeff Qian. All Rights Reserved.</p>
+                        </span>
+                    </div>
+                </footer>
+                <!-- End Footer -->
             </div>
         </div>
-
-        <header class="jumbotron">
-            <div class="container">
-                <div class="row row-header">
-                    {% block header %}
-                    <div class="page-header">
-                        <h1>Jeff Qian's Blog</h1>
-                    </div>
-                    {% endblock %}
-                </div>
-            </div>
-        </header>
-
-        <div class="container">
-            <div class="row row-content">
-                {% block content %}{% endblock %}
-            </div>
-        </div>
-
-        <footer class="row-footer">
-            <div class="container">
-                <div class="row">
-                    <div class="span12">
-                        <p>Copyright &copy; {% now "Y" %}</p>
-                    </div>
-                </div>
-            </div>
-        </footer>
 
         <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
         <script>window.jQuery || document.write('<script src="{% static 'bower_components/html5-boilerplate/js/vendor/jquery-1.12.0.min.js' %}"><\/script>')</script>
         <script src="{% static 'bower_components/html5-boilerplate/dist/js/plugins.js' %}"></script>
         <script src="{% static 'bower_components/bootstrap/dist/js/bootstrap.min.js' %}"></script>
+        
+        <!-- Menu toggle script -->
+        <script type="text/javascript">
+            $(document).ready(function () {
+                $('#menu-toggle').on('click', function () {
+                    $('#sidebar').toggleClass('active');
+                });
+            });
+        </script>
 
         <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
         <script>

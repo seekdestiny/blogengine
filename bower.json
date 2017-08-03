@@ -17,6 +17,7 @@
   ],
   "dependencies": {
     "bootstrap": "boostrap#^3.3.7",
-    "html5-boilerplate": "^5.3.0"
+    "html5-boilerplate": "^5.3.0",
+    "font-awesome": "fontawesome#^4.7.0"
   }
 }
