@@ -3,7 +3,6 @@
 */
 @import "https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700";
 
-
 body {
     font-family: 'Poppins', sans-serif;
     background: #fafafa;
@@ -85,8 +84,8 @@ a, a:hover, a:focus {
 }
 
 #sidebar ul li a {
-    padding: 10px;
-    font-size: 1.1em;
+    padding: 15px;
+    font-size: 1.5em;
     display: block;
 }
 #sidebar ul li a:hover {
@@ -99,6 +98,28 @@ a, a:hover, a:focus {
     background: #6d7fcc;
 }
 
+.form-group {
+    padding: 15px;
+    margin: 0 auto;
+}
+
+.form-group .side-button-icon {
+    padding: 6px 5px 6px 0px;
+}
+
+.form-group .side-button-icon .fa-lg {
+    font-size: 1.7em;
+    vertical-align: 0%;
+}
+
+.searchInput {
+    padding-left: 0px;
+    padding-right: 20px;
+}
+
+.form-control {
+    font-size: 1.4em;
+}
 
 a[data-toggle="collapse"] {
     position: relative;
@@ -206,6 +227,7 @@ a.article, a.article:hover {
     #sidebarCollapse span:first-of-type,
     #sidebarCollapse span:nth-of-type(2),
     #sidebarCollapse span:last-of-type {
+        width: 80%;
         transform: none;
         opacity: 1;
         margin: 5px auto;

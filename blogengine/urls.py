@@ -1,7 +1,7 @@
 from django.conf.urls import url
 from django.views.generic import ListView, DetailView
 from blogengine.models import Post, Category, Tag
-from blogengine.views import CategoryListView, TagListView, PostsFeed
+from blogengine.views import CategoryListView, TagListView, PostsFeed, getSearchResults
 
 urlpatterns = [
     # Index
@@ -29,4 +29,7 @@ urlpatterns = [
 
     # Post RSS feed
     url(r'^feeds/posts/$', PostsFeed()),
+
+    # Search posts
+    url(r'^search', getSearchResults, name='search'),
 ]

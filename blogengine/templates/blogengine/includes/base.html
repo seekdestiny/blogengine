@@ -33,7 +33,7 @@
             <nav id="sidebar">
                 <!-- Sidebar Header-->
                 <div class="sidebar-header">
-                    <h3>Jeff Qian</h3>
+                    <h1>Jeff Qian</h1>
                 </div>
 
                 <ul class="sidebar-buttons">
@@ -66,10 +66,16 @@
                     </li>
 
                     <li class="sidebar-button">
-                        <a class="side-button-link" href="/">
-                            <i class="side-button-icon fa fa-lg fa-search"></i>
-                            <span class="sidebar-button-desc">Search</span>
-                        </a>
+                        <form action="/search" method="GET">
+                          <div class="form-group row">
+                            <div class="col-lg-2 side-button-icon">
+                                <i class="fa fa-lg fa-search"></i>
+                            </div>
+                            <div class="searchInput col-lg-10">
+                                <input class="form-control" type="search" name="q" placeholder="Search..."></input>
+                            </div>
+                          </div>
+                        </form>
                     </li>
 
                     <li class="sidebar-button">
@@ -91,7 +97,7 @@
                     <li class="sidebar-button">
                         <a class="side-button-link" href="https://github.com/seekdestiny">
                             <i class="side-button-icon fa fa-lg fa-github"></i>
-                            <span class="sidebar-button-desc">Github</span>
+                            <span class="sidebar-button-desc">Gihub</span>
                         </a>
                     </li>
 
