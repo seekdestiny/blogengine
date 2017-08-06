@@ -73,7 +73,7 @@
                     </li>
 
                     <li class="sidebar-button">
-                        <a class="side-button-link" href="/">
+                        <a class="side-button-link" href="/resume/">
                             <i class="side-button-icon fa fa-lg fa-vcard"></i>
                             <span class="sidebar-button-desc">Resume</span>
                         </a>
@@ -115,9 +115,8 @@
             <!-- End Sidebar -->
 
             <div id="main">
-                <!-- Page Content -->
-                <div id ="content" class="container-fluid">
-                    <div class="row">
+                <div class="container">
+                    <div id="content" class="row">
                         <div class="col-lg-12">
                             <button type="button" class="btn btn-info navbar-btn" id="menu-toggle">
                                 <i class="glyphicon glyphicon-align-left"></i>
@@ -126,18 +125,13 @@
                             {% block content %}{% endblock %}
                         </div>
                     </div>
-                </div>
-                <!-- End Page Content -->
 
-                <!-- Footer -->
-                <footer id="footer" class="container-fluid">
-                    <div class="row">
+                    <footer id="footer" class="row">
                         <span class="col-lg-12">
                             <p>Copyright &copy; {% now "Y" %} Jeff Qian. All Rights Reserved.</p>
                         </span>
-                    </div>
-                </footer>
-                <!-- End Footer -->
+                    </footer>
+                </div>
             </div>
         </div>
 

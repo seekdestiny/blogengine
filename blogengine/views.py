@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.views.generic import ListView
+from django.views.generic import ListView, DetailView
 from blogengine.models import Category, Post, Tag
 from django.contrib.syndication.views import Feed
 from django.utils.encoding import force_str

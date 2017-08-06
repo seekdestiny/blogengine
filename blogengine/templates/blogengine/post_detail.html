@@ -3,25 +3,25 @@
     {% load custom_markdown %}
 
     {% block content %}
-        <div class="post col-md-12">
+        <div class="post">
             <h1>{{ object.title }}</h1>
             <h3>{{ object.pub_date }}</h3>
             {{ object.text|custom_markdown }}
             {% if object.category %}
-                <div class="col-md-12">
+                <div>
                     <a href="{{ object.category.get_absolute_url }}"><span class="label label-success">{{ object.category.name }}</span></a>
                 </div>
             {% endif %}
 
             {% if object.tags %}
-                <div class="col-md-12">
+                <div>
                     {% for tag in object.tags.all %}
                     <a href="{{ tag.get_absolute_url }}"><span class="label label-success">{{ tag.name }}</span></a>
                     {% endfor %}
                 </div>
             {% endif %}
 
-            <div class="col-md-12">
+            <div>
                 <div id="disqus_thread"></div>
             </div>
             <script>
