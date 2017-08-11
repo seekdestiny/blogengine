@@ -1,0 +1,34 @@
+{% extends "blogengine/includes/base.html" %}
+
+    {% load month_name %}
+
+    {% block content %}
+
+    {% for year_list in list_posts %}
+        <ul class="year">
+          {% for year, month_list in year_list.items %}
+            <h1> {{year}} </h1>
+            
+            {% for month, post_list in month_list.items %}
+                {% if post_list %}
+                <li class="month">
+                    <h2> {{ month | month_name }} </h2>
+                    
+                    {% for post in post_list %}
+                        <div class="post">
+                            <h3><a href="{{ post.get_absolute_url }}">{{ post.title }}</a></h3>
+                            <p>{{ post.pub_date }}</p>
+                        </div>
+                    {% endfor %} 
+
+                </li>
+                {% endif %}
+            {% endfor %} 
+
+          {% endfor %} 
+        </ul>    
+    {% endfor %}
+
+    {% endblock %}
+
+  

@@ -8,6 +8,10 @@ from django.utils.encoding import force_str
 from django.utils.safestring import mark_safe
 import markdown2
 
+from django.template import Context, loader
+from django.http import HttpResponse
+import datetime
+
 # Create your views here.
 class CategoryListView(ListView):
     def get_queryset(self):
@@ -73,3 +77,27 @@ def getSearchResults(request):
                               {'page_obj': returned_page,
                                'object_list': returned_page.object_list,
                                'search': query})
+
+def posts_archive(request):
+    '''a archive posts listing view'''
+    posts = Post.objects.filter().order_by('-pub_date')
+    now = datetime.datetime.now()
+
+    #create a dict with the years and months:posts 
+    post_dict = {}
+    for i in range(posts[0].pub_date.year, posts[len(posts)-1].pub_date.year-1, -1):
+        post_dict[i] = {}
+        for month in range(1,13):
+            post_dict[i][month] = []
+    for post in posts:
+        post_dict[post.pub_date.year][post.pub_date.month].append(post)
+ 
+    #this is necessary for the years to be sorted
+    post_sorted_keys = list(reversed(sorted(post_dict.keys())))
+    list_posts = []
+    for key in post_sorted_keys:
+        adict = {key:post_dict[key]}
+        list_posts.append(adict)
+
+    return render_to_response('blogengine/post_archive.html',
+                             {'now': now, 'list_posts': list_posts})

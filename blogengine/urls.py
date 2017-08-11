@@ -1,7 +1,7 @@
 from django.conf.urls import url
 from django.views.generic import ListView, DetailView
 from blogengine.models import Post, Category, Tag
-from blogengine.views import CategoryListView, TagListView, PostsFeed, getSearchResults
+from blogengine.views import CategoryListView, TagListView, PostsFeed, getSearchResults, posts_archive
 
 urlpatterns = [
     # Index
@@ -32,4 +32,7 @@ urlpatterns = [
 
     # Search posts
     url(r'^search', getSearchResults, name='search'),
+
+    # Archive post
+     url(r'^archive/?$', posts_archive, name="post_archive"),
 ]
