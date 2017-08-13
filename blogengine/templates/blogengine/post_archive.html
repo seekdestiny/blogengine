@@ -7,19 +7,26 @@
     {% for year_list in list_posts %}
         <ul class="year">
           {% for year, month_list in year_list.items %}
-            <h1> {{year}} </h1>
+            <h1>{{year}}</h1>
             
             {% for month, post_list in month_list.items %}
                 {% if post_list %}
-                <li class="month">
-                    <h2> {{ month | month_name }} </h2>
-                    
+                <li id="{{year}}-{{month}}" class="month container">
+                    <div class="month-data row" data-toggle="collapse" data-target="#{{year}}-{{month}}-post">
+                        <i id="caret-down" class="fa fa-caret-down"></i>
+                        <i id="caret-up" class="fa fa-caret-up"></i>
+                        <span class="name"> {{month | month_name }}</span>
+                        <span class="counter"> ({{ post_list | length }})</span>
+                    </div>
+
+                    <ul id="{{year}}-{{month}}-post" class="posts collapse"> 
                     {% for post in post_list %}
-                        <div class="post">
-                            <h3><a href="{{ post.get_absolute_url }}">{{ post.title }}</a></h3>
-                            <p>{{ post.pub_date }}</p>
-                        </div>
+                        <li class="post row">
+                            <a class="title" href="{{ post.get_absolute_url }}">{{post.title}}</a>
+                            <span class="date">- {{ post.pub_date }}</span>
+                        </li>
                     {% endfor %} 
+                    </ul>
 
                 </li>
                 {% endif %}
@@ -30,5 +37,3 @@
     {% endfor %}
 
     {% endblock %}
-
-  
