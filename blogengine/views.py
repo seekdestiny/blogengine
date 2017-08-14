@@ -106,6 +106,9 @@ def posts_category(request):
     #create a dict with the category and posts
     post_dict = {}
     for post in posts:
+        if post.category is None:
+            continue
+
         if post.category.name not in post_dict:
             post_dict[post.category.name] = []
         post_dict[post.category.name].append(post)

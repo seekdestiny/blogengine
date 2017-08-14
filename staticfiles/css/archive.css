@@ -1,0 +1,64 @@
+.year {
+    list-style: none;
+    font-size: 120%;
+    font-weight: bold;
+}
+
+.year .month {
+    font-weight:normal;
+    margin: 10px;
+}
+
+.year .month .month-data:hover {
+    font-weight: 500;
+}
+
+.year .month .month-data .name {
+    cursor: pointer;
+    font-size: 150%;
+    font-weight: 450;
+}
+
+.year .month .month-data .counter {
+    font-size: 80%;
+}
+
+.year .month .posts {
+    list-style: none;
+}
+
+.year .month .posts .post {
+    margin: 5px;
+}
+
+.year .month .posts .post .title:hover {
+    text-decoration: underline;
+}
+
+.year .month .posts .post .title {
+    font-size: 120%;
+    padding: 5px 0;
+}
+
+.year .month .posts .post .date {
+    font-size: 80%;
+    opacity: 0.5;
+    padding: 5px 0;
+}
+
+#caret-down {
+    display: inline;
+}
+
+#caret-up {
+    display: none;
+}
+
+#caret-down.active {
+    display: none;
+}
+
+#caret-up.active {
+    display: inline;
+}
+
