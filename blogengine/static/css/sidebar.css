@@ -191,7 +191,7 @@ a[aria-expanded="true"]::before {
 }
 
 /* ---------------------------------------------------
-    CONTENT STYLE
+    MAIN STYLE
 ----------------------------------------------------- */
 #main {
     padding: 20px;
@@ -233,6 +233,12 @@ a[aria-expanded="true"]::before {
     margin: 5px auto;
 }
 
+#content {
+}
+
+#footer {
+    text-align: center;
+}
 
 /* ---------------------------------------------------
     MEDIAQUERIES

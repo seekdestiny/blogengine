@@ -7,9 +7,6 @@ from django.contrib.syndication.views import Feed
 from django.utils.encoding import force_str
 from django.utils.safestring import mark_safe
 import markdown2
-
-from django.template import Context, loader
-from django.http import HttpResponse
 import datetime
 
 # Create your views here.
@@ -101,3 +98,20 @@ def posts_archive(request):
 
     return render_to_response('blogengine/post_archive.html',
                              {'now': now, 'list_posts': list_posts})
+
+def posts_category(request):
+    '''a category posts listing view'''
+    posts = Post.objects.filter().order_by('-pub_date')
+    
+    #create a dict with the category and posts
+    post_dict = {}
+    for post in posts:
+        if post.category.name not in post_dict:
+            post_dict[post.category.name] = []
+        post_dict[post.category.name].append(post)
+
+    return render_to_response('blogengine/post_category.html',
+                              {'list_posts': post_dict})
+        
+
+

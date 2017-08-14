@@ -5,7 +5,7 @@
     {% block content %}
 
     {% for year_list in list_posts %}
-        <ul class="year">
+        <ul class="year container">
           {% for year, month_list in year_list.items %}
             <h1>{{year}}</h1>
             
@@ -23,7 +23,7 @@
                     {% for post in post_list %}
                         <li class="post row">
                             <a class="title" href="{{ post.get_absolute_url }}">{{post.title}}</a>
-                            <span class="date">- {{ post.pub_date }}</span>
+                            <span class="date">- {{ post.pub_date | date:"M j, Y"}}</span>
                         </li>
                     {% endfor %} 
                     </ul>

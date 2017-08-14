@@ -1,0 +1,36 @@
+.categories {
+    list-style: none;
+    font-size: 120%;
+    font-weight: bold;
+}
+
+.categories li {
+    margin-bottom: 10px;
+}
+
+.categories .posts {
+    list-style: none;
+}
+
+.categories .posts .post {
+    margin: 5px;
+}
+
+.categories .posts .post .title {
+    font-size: 120%;
+    padding: 5px 0;
+    font-weight: 400;
+}
+
+.categories .posts .post .title:hover {
+    text-decoration: underline;
+}
+
+.categories .posts .post .date {
+    font-size: 80%;
+    opacity: 0.5;
+    padding: 5px 0;
+    font-weight: 400;
+}
+
+
