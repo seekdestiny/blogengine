@@ -213,3 +213,25 @@ pip freeze > requirements.txt
 
 heroku addons:add memcachier:dev
 ```
+
+### Using Fabric for deployment
+
+```
+pip install Fabric
+
+pip3 install Fabric3
+
+pip freeze > requirements.txt
+
+fab deploy
+```
+
+### Debugging Django
+
+```
+pip install ipdb
+
+pip install django-debug-toolbar
+
+pip freeze > requirements.txt
+```
