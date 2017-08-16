@@ -8,6 +8,8 @@ from django.contrib.sites.models import Site
 from django.contrib.auth.models import User
 import feedparser
 import factory.django
+from datetime import datetime
+from dateutil import tz
 
 # Factories for tests
 class SiteFactory(factory.django.DjangoModelFactory):
@@ -586,11 +588,17 @@ class PostViewTest(BaseAcceptanceTest):
         # Check the post tag is in the response
         post_tag = all_posts[0].tags.all()[0]
         self.assertTrue(post_tag.name in response.content.decode('utf-8'))
+        
+        from_zone = tz.gettz('UTC')
+        to_zone = tz.gettz('US/Pacific')
+        utc = datetime.strptime(post.pub_date.strftime('%Y-%m-%d %H:%M:%S'), '%Y-%m-%d %H:%M:%S')
+        utc = utc.replace(tzinfo=from_zone)
+        pst = utc.astimezone(to_zone)
 
         # Check the post date is in the response
-        self.assertTrue(str(post.pub_date.year) in response.content.decode('utf-8'))
-        self.assertTrue(post.pub_date.strftime('%b') in response.content.decode('utf-8'))
-        self.assertTrue(str(post.pub_date.day) in response.content.decode('utf-8'))
+        self.assertTrue(str(pst.year) in response.content.decode('utf-8'))
+        self.assertTrue(pst.strftime('%b') in response.content.decode('utf-8'))
+        self.assertTrue(str(pst.day) in response.content.decode('utf-8'))
 
         # Check the link is marked up properly
         self.assertTrue('<a href="http://127.0.0.1:8000/">my first blog post</a>' \
@@ -639,11 +647,17 @@ class PostViewTest(BaseAcceptanceTest):
 
         # Check the post text is in the response
         self.assertTrue(markdown.markdown(post.text) in response.content.decode('utf-8'))
+        
+        from_zone = tz.gettz('UTC')
+        to_zone = tz.gettz('US/Pacific')
+        utc = datetime.strptime(post.pub_date.strftime('%Y-%m-%d %H:%M:%S'), '%Y-%m-%d %H:%M:%S')
+        utc = utc.replace(tzinfo=from_zone)
+        pst = utc.astimezone(to_zone)
 
         # Check the post date is in the response
-        self.assertTrue(str(post.pub_date.year) in response.content.decode('utf-8'))
-        self.assertTrue(post.pub_date.strftime('%b') in response.content.decode('utf-8'))
-        self.assertTrue(str(post.pub_date.day) in response.content.decode('utf-8'))
+        self.assertTrue(str(pst.year) in response.content.decode('utf-8'))
+        self.assertTrue(pst.strftime('%b') in response.content.decode('utf-8'))
+        self.assertTrue(str(pst.day) in response.content.decode('utf-8'))
 
         # Check the link is marked up properly
         self.assertTrue('<a href="http://127.0.0.1:8000/">my first blog post</a>' \
@@ -681,10 +695,16 @@ class PostViewTest(BaseAcceptanceTest):
         # Check the post text is in the response
         self.assertTrue(markdown.markdown(post.text) in response.content.decode('utf-8'))
 
+        from_zone = tz.gettz('UTC')
+        to_zone = tz.gettz('US/Pacific')
+        utc = datetime.strptime(post.pub_date.strftime('%Y-%m-%d %H:%M:%S'), '%Y-%m-%d %H:%M:%S')
+        utc = utc.replace(tzinfo=from_zone)
+        pst = utc.astimezone(to_zone)
+
         # Check the post date is in the response
-        self.assertTrue(str(post.pub_date.year) in response.content.decode('utf-8'))
-        self.assertTrue(post.pub_date.strftime('%b') in response.content.decode('utf-8'))
-        self.assertTrue(str(post.pub_date.day) in response.content.decode('utf-8'))
+        self.assertTrue(str(pst.year) in response.content.decode('utf-8'))
+        self.assertTrue(pst.strftime('%b') in response.content.decode('utf-8'))
+        self.assertTrue(str(pst.day) in response.content.decode('utf-8'))
 
         # Check the link is marked up properly
         self.assertTrue('<a href="http://127.0.0.1:8000/">my first blog post</a>' in response.content.decode('utf-8'))
@@ -721,11 +741,17 @@ class PostViewTest(BaseAcceptanceTest):
 
         # Check the post text is in the response
         self.assertTrue(markdown.markdown(post.text) in response.content.decode('utf-8'))
+        
+        from_zone = tz.gettz('UTC')
+        to_zone = tz.gettz('US/Pacific')
+        utc = datetime.strptime(post.pub_date.strftime('%Y-%m-%d %H:%M:%S'), '%Y-%m-%d %H:%M:%S')
+        utc = utc.replace(tzinfo=from_zone)
+        pst = utc.astimezone(to_zone)
 
         # Check the post date is in the response
-        self.assertTrue(str(post.pub_date.year) in response.content.decode('utf-8'))
-        self.assertTrue(post.pub_date.strftime('%b') in response.content.decode('utf-8'))
-        self.assertTrue(str(post.pub_date.day) in response.content.decode('utf-8'))
+        self.assertTrue(str(pst.year) in response.content.decode('utf-8'))
+        self.assertTrue(pst.strftime('%b') in response.content.decode('utf-8'))
+        self.assertTrue(str(pst.day) in response.content.decode('utf-8'))
 
         # Check the link is marked up properly
         self.assertTrue('<a href="http://127.0.0.1:8000/">my first blog post</a>' in response.content.decode('utf-8'))

@@ -235,3 +235,13 @@ pip install django-debug-toolbar
 
 pip freeze > requirements.txt
 ```
+
+### Optimising static files
+
+```
+sudo npm installl -g grunt-cli
+
+npm init
+
+npm install grunt grunt-contrib-cssmin grunt-contrib-concat grunt-contrib-uglify --save-dev
+```
