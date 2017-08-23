@@ -9864,6 +9864,12 @@ a, a:hover, a:focus {
     background: #6d7fcc;
 }
 
+#sidebar .sidebar-profile {
+    display: block;
+    margin: 0 auto;
+    border-radius: 100%;
+}
+
 .form-group {
     padding: 15px;
     margin: 0 auto;

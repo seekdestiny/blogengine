@@ -67,13 +67,8 @@ a, a:hover, a:focus {
     transform: rotateY(100deg);
 }
 
-#sidebar .sidebar-header {
-    padding: 20px;
-    background: #6d7fcc;
-}
-
 #sidebar ul.sidebar-buttons {
-    padding: 20px 0;
+    padding: 5px 0;
     border-bottom: 1px solid #47748b;
     list-style: none;
 }
@@ -85,7 +80,7 @@ a, a:hover, a:focus {
 
 #sidebar ul li a {
     padding: 15px;
-    font-size: 1.5em;
+    font-size: 1.3em;
     display: block;
 }
 #sidebar ul li a:hover {
@@ -96,6 +91,30 @@ a, a:hover, a:focus {
 #sidebar ul li.active > a, a[aria-expanded="true"] {
     color: #fff;
     background: #6d7fcc;
+}
+
+#sidebar .sidebar-header {
+    display: block;
+    margin: 0 auto;
+    padding: 20px 20px 10px 20px;
+    background: #6d7fcc;
+}
+
+#sidebar .sidebar-header .sidebar-profile-picture {
+    width: 100px;
+    height: 100px;
+    border-radius: 100%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#sidebar .sidebar-header .sidebar-profile-name {
+    font-size: 1.4em;
+    text-align: center;
+    margin-top: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
 }
 
 .form-group {
@@ -123,7 +142,7 @@ a, a:hover, a:focus {
 }
 
 .form-control {
-    font-size: 1.5em;
+    font-size: 1.3em;
     border: none;
     box-shadow: none;
     background-color: #7386D5;
