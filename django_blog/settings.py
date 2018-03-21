@@ -86,6 +86,7 @@ WSGI_APPLICATION = 'django_blog.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.11/ref/settings/#databases
 
+# for heroku usage
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.',
@@ -94,6 +95,7 @@ DATABASES = {
     }
 }
 
+# for aws usage
 '''
 if 'RDS_DB_NAME' in os.environ:
     DATABASES = {
@@ -159,7 +161,7 @@ JENKINS_TASKS = (
 )
 PROJECT_APPS = ['blogengine']
 
-# Heroku config
+# Heroku config - the below two lines
 # Parse database configuration from $DATABASE_URL
 import dj_database_url
 DATABASES['default'] =  dj_database_url.config(default="sqlite:///db.sqlite3")
