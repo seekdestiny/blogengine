@@ -51,7 +51,7 @@ psycopg2==2.7.1
 ptyprocess==0.5.2
 pyasn1==0.3.2
 pycparser==2.18
-Pygments==2.2.0
+Pygments==2.7.4
 pygments-style-solarized==0.1.1
 pylibmc==1.5.2
 pylint==1.7.2
