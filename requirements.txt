@@ -1,4 +1,4 @@
-pip==9.0.1
+pip==21.1
 asn1crypto==0.22.0
 astroid==1.5.3
 awsebcli==3.10.5
